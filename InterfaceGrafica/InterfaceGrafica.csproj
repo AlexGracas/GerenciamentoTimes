@@ -120,7 +120,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BancoDeDados\FutebolModelBiblioteca\FutebolModelBiblioteca.csproj">
+    <ProjectReference Include="..\FutebolModelBiblioteca\FutebolModelBiblioteca.csproj">
       <Project>{77bd81d5-415c-4392-84c6-a699678238b8}</Project>
       <Name>FutebolModelBiblioteca</Name>
     </ProjectReference>

@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace FutebolModelBiblioteca
 {
-    class Tecnico
+    class Tecnico : Pessoa
     {
+        public Time Time { get; set;}
+
     }
 }
