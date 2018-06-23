@@ -43,5 +43,6 @@
                 x:Name="OkButton" Click="OkButton_Click">Ok</Button>
         <Button Grid.Row="4" Grid.Column="1" Width="100" Margin="20" HorizontalAlignment="Left"
                 x:Name="CancelarButton" Click="CancelarButton_Click">Cancelar</Button>
+        
     </Grid>
 </Window>
