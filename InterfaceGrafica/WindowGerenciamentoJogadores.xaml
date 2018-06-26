@@ -5,13 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InterfaceGrafica"
         mc:Ignorable="d"
+        xmlns:System="clr-namespace:System;assembly=mscorlib"
         Title="WindowGerenciamentoJogadores" Height="450" Width="800">
+    
     <Grid Margin="20">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -26,22 +29,29 @@
         <ComboBox Grid.Row="2" Grid.Column="1" 
                   ItemsSource="{Binding Path=Times}" SelectedItem="{Binding Path=JogadorSelecionado.Time}"
                   DisplayMemberPath="Nome"/>
-        <DataGrid x:Name="JogadoresDataGridView" Grid.Row="3" Grid.ColumnSpan="2" Margin="20" 
+        <DataGrid x:Name="JogadoresDataGridView" Grid.Row="4" Grid.ColumnSpan="2" Margin="20" 
                   Visibility="{Binding Path=VisibilidadeDataGrid}"
-                  ItemsSource="{Binding Path=Jogadores}"  CanUserAddRows="False"                
+                  ItemsSource="{Binding Path=Jogadores}"  CanUserAddRows="False"
+                  IsReadOnly="True"
                   SelectedItem="{Binding Path=JogadorSelecionado}" AutoGenerateColumns="False" 
                   SelectionChanged="JogadoresDataGridView_SelectionChanged"
                   >
             <DataGrid.Columns>
-            <DataGridTextColumn Header="Id" Binding="{Binding Id}"></DataGridTextColumn>
-            <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" ></DataGridTextColumn>
-            <DataGridTextColumn Header="Numero" Binding="{Binding Numero}" ></DataGridTextColumn>
-            <DataGridTextColumn Header="Time" Binding="{Binding Time.Nome}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Id" Binding="{Binding Id}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Nome" Binding="{Binding Nome}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="Numero" Binding="{Binding Numero}" ></DataGridTextColumn>
+                <DataGridTextColumn Header="Time" Binding="{Binding Time.Nome}"></DataGridTextColumn>
+                <DataGridTextColumn Header="Nascimento" Binding="{Binding Time.Nascimento}"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Grid.Row="4" Grid.Column="0" Width="100" Margin="20" HorizontalAlignment="Right"
+        <Button Grid.Row="5" Grid.Column="0" Width="100" Margin="20" HorizontalAlignment="Right"
                 x:Name="OkButton" Click="OkButton_Click">Ok</Button>
-        <Button Grid.Row="4" Grid.Column="1" Width="100" Margin="20" HorizontalAlignment="Left"
+        <Button Grid.Row="5" Grid.Column="1" Width="100" Margin="20" HorizontalAlignment="Left"
                 x:Name="CancelarButton" Click="CancelarButton_Click">Cancelar</Button>
+        <Label Content="Label" HorizontalAlignment="Left" Grid.Row="3" VerticalAlignment="Top"/>
+        <DatePicker  Grid.Row="3" Grid.Column="2" 
+                     SelectedDate="{Binding Path=JogadorSelecionado.Nascimento, 
+                                    TargetNullValue={x:Static System:DateTime.Now}}"></DatePicker>
+
     </Grid>
 </Window>

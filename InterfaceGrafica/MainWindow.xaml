@@ -35,6 +35,11 @@
                     Click="MenuItem_Click"
                     Header="Novo Jogador"/>
             </MenuItem>
+            <MenuItem Header="Relatórios">
+                <MenuItem Header="Times e Jogadores"
+                          x:Name="Relatorio_TimesJogadores"
+                          Click="MenuItem_Click"></MenuItem>
+            </MenuItem>
         </Menu>
         <TextBox
             x:Name="TextBox1"

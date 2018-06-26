@@ -11,6 +11,7 @@
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
             <RowDefinition/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -29,16 +30,17 @@
         <DatePicker Grid.Row="2" Grid.Column="1"                    
                     SelectedDate="{Binding Path=TimeSelecionado.DataFundacao}"
                     ></DatePicker>
-        <DataGrid Grid.Row="3" Grid.ColumnSpan="2" 
+        
+        <DataGrid Grid.Row="4" Grid.ColumnSpan="2" 
                   Visibility="{Binding Path=VisibilidadeDataGrid}"
                   ItemsSource="{Binding Path=Times}"
                   SelectedItem="{Binding Path=TimeSelecionado}"
                   AutoGenerateColumns="True">
         </DataGrid>
-        <Button Grid.Row="4" Width="70" x:Name="OkButton"
+        <Button Grid.Row="5" Width="70" x:Name="OkButton"
                 Click="OkButton_Click"
                 Margin="10">Ok</Button>
-        <Button Grid.Row="4" Grid.Column="1" x:Name="CancelarButton"
+        <Button Grid.Row="5" Grid.Column="1" x:Name="CancelarButton"
                 Click="CancelarButton_Click"
                 Width="70" Margin="59,10,36,10">Cancelar</Button>
     </Grid>

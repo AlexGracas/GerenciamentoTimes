@@ -13,5 +13,7 @@ namespace FutebolModelBiblioteca
         public int Numero { get; set; }
 
         public Time Time { get; set; }
+
+        public DateTime? Nascimento { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FutebolModelBiblioteca;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -52,6 +53,22 @@ namespace InterfaceGrafica
               new WindowGerenciamentoJogadores();
                 window.ModoCriacaoJogador = false;
                 window.ShowDialog();
+            }else if(sender == Relatorio_TimesJogadores)
+            {
+                ModelFutebol ctx = new ModelFutebol();
+                Microsoft.Win32.SaveFileDialog dlg = new Microsoft.Win32.SaveFileDialog();
+                dlg.FileName = "Relatorio"; // Nome padrão
+                dlg.DefaultExt = ".xlsx"; // Extensão do arquivo
+                dlg.Filter = "Excel (.xlsx)|*.xlsx"; // Filtros
+                Nullable<bool> result = dlg.ShowDialog();
+
+                // Somente irá salvar se o usuário selecionar um arquivo.
+                if (result == true)
+                {
+                    // Salvar Documento
+                    ServiceClosedXML.CriarPlanilhaJogadoresTimes(ctx.Times.ToList(), dlg.FileName);
+                }
+                
             }
            
         }
