@@ -37,7 +37,7 @@ namespace InterfaceGrafica
 
         public Jogador JogadorSelecionado
         {
-            get => _jogadorSelecionado;
+            get { return _jogadorSelecionado; }
             set
             {
                 _jogadorSelecionado = value;
@@ -59,7 +59,8 @@ namespace InterfaceGrafica
 
         public ICollection<Time> Times
         {
-            get => _times; set
+            get { return _times; }
+            set
             {
                 _times = value;
                 this.NotifyPropertyChanged("Times");
