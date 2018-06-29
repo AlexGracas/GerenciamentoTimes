@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,6 +23,8 @@ namespace InterfaceGrafica
     public partial class WindowGerenciamentoTimes : Window, 
         INotifyPropertyChanged
     {
+
+        ModelFutebol ctx = new ModelFutebol();
 
         private Time _Time = new Time();
         public Time TimeSelecionado
@@ -63,8 +66,7 @@ namespace InterfaceGrafica
 
             this.DataContext = this;
 
-            FacadeTimes facade = new FacadeTimes();
-            this.Times = facade.ObterTimes();
+            this.Times = ctx.Times.ToList();
 
         }
 
@@ -86,29 +88,41 @@ namespace InterfaceGrafica
 
         private void OkButton_Click(object sender, RoutedEventArgs e)
         {
-            ModelFutebol ctx = new ModelFutebol();
+            
+
             if (ModoCriacaoTime)
             {                
                 ctx.Times.Add(TimeSelecionado);
                 ctx.SaveChanges();
             }else
-            {
-                if (TimeSelecionado != null 
-                    && TimeSelecionado.Id > 0)
-                {
-                    Time ParaSalvar = ctx.Times.Find(TimeSelecionado.Id);
-                    ParaSalvar.Nome = TimeSelecionado.Nome;
-                    ParaSalvar.DataFundacao = TimeSelecionado.DataFundacao;
-                    ctx.Entry(ParaSalvar).State = 
-                        System.Data.Entity.EntityState.Modified;
-                    ctx.SaveChanges();
-                }
+            {                
+                ctx.SaveChanges();
             }
         }
 
         private void CancelarButton_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void BtnSelecionarCamisa_Click(object sender, RoutedEventArgs e)
+        {
+            Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+            dlg.FileName = "Relatorio"; // Nome padrão
+            dlg.Filter = "Imagens (*.bmp;*.jpg;*.jpeg,*.png)|*.BMP;*.JPG;*.JPEG;*.PNG";
+            Nullable<bool> result = dlg.ShowDialog();
+
+            // Somente irá salvar se o usuário selecionar um arquivo.
+            if (result == true)
+            {
+                var uri = new Uri(dlg.FileName);
+                var imagemFile = File.Open(dlg.FileName,FileMode.Open);
+                TimeSelecionado.Camisa = new byte[imagemFile.Length];
+                imagemFile.Read(TimeSelecionado.Camisa,
+                    0, (int)imagemFile.Length);
+                NotifyPropertyChanged("Camisa");
+            }
+            
         }
     }
 }

@@ -7,13 +7,19 @@ using System.Threading.Tasks;
 
 namespace FutebolModelBiblioteca
 {
+    /// <summary>
+    /// Esta classe utiliza a biblioteca ClosedXML para gerar um arquivo
+    /// Excel. Este arquivo será utilizado para criar um relatório gerencial.
+    /// </summary>
     public class ServiceClosedXML
     {
         public static void CriarPlanilhaJogadoresTimes(IEnumerable<Time> times, String caminho)
         {
+            //Criar um Workbook. Um arquvio excel.
             var workbook = new XLWorkbook();
             foreach (Time t in times)
             {
+                //Um arquivo excel pode conter várias planilhas. 
                 var worksheet = workbook.Worksheets.Add(t.Nome);               
                 worksheet.Cell("A1").Value = "Jogador";
                 var columnNome = worksheet.Column("A");
@@ -45,8 +51,12 @@ namespace FutebolModelBiblioteca
                     ListaJogadoresLinhaInicio++;
                 }
             }
+            //Excel pode utilizar a referência A1 [A1,B2...] ou R1C1
+            //Se quiser ler mais sobre acesse o link: https://www.reddit.com/r/excel/comments/6tpgk3/reference_style_r1c1_vs_a1/
             workbook.ReferenceStyle = XLReferenceStyle.A1;
+            //Calcular automaticamente os valores das fórmulas.
             workbook.CalculateMode = ClosedXML.Excel.XLCalculateMode.Auto;
+            //Persistir o arquivo.
             workbook.SaveAs(caminho,true, evaluateFormulae: true);
         }
     }

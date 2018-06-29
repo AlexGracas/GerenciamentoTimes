@@ -18,6 +18,27 @@ namespace FutebolModelBiblioteca
         public virtual ICollection<Jogador> Jogadores { get; set; }
         = new List<Jogador>();
 
-      //  public Image Camisa { get; set; }
+        public byte[] Camisa { get; set; }
+        
+        /// <summary>
+        /// Este método é essencial para algumas comparações funcionarem.
+        /// Caso contrário os combobox e outras seleções na interface gráfica
+        /// não conseguiram visualizar que dois objetos que foram 
+        /// carregados do banco de dados são iguais.
+        /// </summary>
+        /// <param name="obj">Objeto a ser comparado com o atual</param>
+        /// <returns></returns>
+        public override bool Equals(object obj)
+        {
+            if(obj is Time)
+            {
+                return this.Id == ((Time)(obj)).Id;
+            }
+            return false;
+        }
+        public override int GetHashCode()
+        {
+            return this.Id.GetHashCode();
+        }
     }
 }

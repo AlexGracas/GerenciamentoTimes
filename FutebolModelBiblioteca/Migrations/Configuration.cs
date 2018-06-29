@@ -10,11 +10,12 @@ namespace FutebolModelBiblioteca.Migrations
         public Configuration()
         {
             AutomaticMigrationsEnabled = true;
+            AutomaticMigrationDataLossAllowed = true;
         }
 
         protected override void Seed(FutebolModelBiblioteca.ModelFutebol context)
         {
-            if (false)
+            if (true)
             {
                 context.Jogadores.RemoveRange(context.Jogadores);
                 context.Times.RemoveRange(context.Times);

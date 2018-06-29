@@ -64,7 +64,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FacadeTimes.cs" />
     <Compile Include="Jogador.cs" />
     <Compile Include="Migrations\201806261422093_d1.cs" />
     <Compile Include="Migrations\201806261422093_d1.Designer.cs">
